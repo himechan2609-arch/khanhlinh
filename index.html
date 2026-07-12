@@ -9,50 +9,179 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  /* CSS bổ sung để tối ưu bố cục mới theo yêu cầu */
-  .about-container {
+  /* ==========================================================================
+     CSS BỔ SUNG & CẬP NHẬT CHO BỐ CỤC GIỚI THIỆU GIỐNG WEB MẪU VÀ BẢNG TAB INTERACTIVE
+     ========================================================================== */
+  
+  /* Khung bao ngoài chia 2 phần lớn giống web mẫu */
+  .about-layout-wrapper {
     display: grid;
-    grid-template-columns: 1.2fr 1.8fr;
+    grid-template-columns: 1fr 1.3fr;
     gap: 40px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 40px auto 0;
     padding: 0 20px;
-    align-items: start;
+    align-items: stretch;
   }
-  .about-images {
+
+  /* Khung chứa ảnh lấy cảm hứng từ cấu trúc web mẫu */
+  .about-image-side {
+    width: 100%;
+    min-height: 400px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .about-image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .about-image-side:hover img {
+    transform: scale(1.03);
+  }
+
+  /* Hệ thống bảng tổng quan và nội dung tương tác (Interactive Board) */
+  .about-interactive-side {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-  .about-img-landscape {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+  
+  /* Bảng tổng quan gồm 4 ô */
+  .info-grid-board {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .info-cell {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px;
     border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: transform 0.3s ease;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
-  .about-img-landscape:hover {
-    transform: translateY(-5px);
+  .info-cell .cell-icon {
+    font-size: 1.6rem;
+    background: rgba(255, 255, 255, 0.08);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: all 0.3s ease;
   }
+  .info-cell h3 {
+    font-size: 1.05rem;
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    color: #cbd5e1;
+    font-weight: 600;
+  }
+  
+  /* Trạng thái ô đang được chọn */
+  .info-cell.active-cell {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
+  }
+  .info-cell.active-cell h3 {
+    color: #fff;
+    font-weight: 700;
+  }
+  .info-cell.active-cell .cell-icon {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    transform: scale(1.05);
+  }
+  .info-cell:hover:not(.active-cell) {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Khung hiển thị nội dung chi tiết phía dưới bảng */
+  .info-details-display {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    min-height: 180px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .details-content-pane {
+    display: none;
+    animation: fadeInBlur 0.4s ease forwards;
+  }
+  .details-content-pane.active-pane {
+    display: block;
+  }
+  .details-content-pane h4 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.4rem;
+    margin: 0 0 10px 0;
+    color: #fff;
+  }
+  .details-content-pane p {
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+    font-size: 0.98rem;
+  }
+
+  /* Vùng chứa thẻ từ khóa liên quan */
+  .related-tags-zone {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .keyword-tag {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a78bfa;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .keyword-tag:hover {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.3);
+    color: #fff;
+  }
+
+  @keyframes fadeInBlur {
+    from { opacity: 0; transform: translateY(5px); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  /* Khung tổng kết kinh nghiệm dưới lưới bài tập */
   .exercises-summary-box {
     max-width: 1200px;
     margin: 40px auto 0;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
   .exercises-summary-box h3 {
     font-family: 'Baloo 2', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #fff;
-    margin-top: 0;
-    margin-bottom: 15px;
+    margin: 0 0 12px 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -60,7 +189,7 @@
   .exercises-summary-box p {
     color: #cbd5e1;
     line-height: 1.7;
-    margin-bottom: 25px;
+    margin: 0 0 25px 0;
   }
   .drive-cta-wrapper {
     text-align: center;
@@ -71,21 +200,29 @@
     gap: 10px;
     background: linear-gradient(135deg, #6366f1, #a855f7);
     color: #fff;
-    padding: 14px 30px;
+    padding: 14px 32px;
     border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
     transition: all 0.3s ease;
   }
   .btn-drive-direct:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
   }
+
+  /* Responsive hạ xuống 1 cột trên màn hình điện thoại */
   @media (max-width: 968px) {
-    .about-container {
+    .about-layout-wrapper {
       grid-template-columns: 1fr;
       gap: 30px;
+    }
+    .about-image-side {
+      min-height: 300px;
+    }
+    .info-grid-board {
+      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -103,7 +240,7 @@
 <nav>
   <div class="logo-group">
     <div class="logo-badge">
-      <img src="avt.jpg" alt="Vũ Khánh Linh" onerror="this.style.display='none'; this.parentElement.innerHTML='KL';">
+      <img src="avatar.jpg" alt="Vũ Khánh Linh" onerror="this.style.display='none'; this.parentElement.innerHTML='KL';">
     </div>
     <div class="logo">Khánh Linh</div>
     <span class="mssv-chip">MSSV: 25042182</span>
@@ -125,7 +262,7 @@
     <span class="eyebrow reveal">✨ Portfolio cá nhân</span>
     <div class="moon-avatar reveal">
       <div class="moon-inner">
-        <img src="linh.jpg" alt="Ảnh cá nhân của Vũ Khánh Linh"
+        <img src="avt.jpg" alt="Ảnh cá nhân của Vũ Khánh Linh"
              onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'avatar-fallback\'>KL</span>';">
       </div>
       <div class="star-badge">🌙</div>
@@ -148,76 +285,116 @@
   </div>
 </section>
 
-<!-- CẬP NHẬT BỐ CỤC PHẦN "ĐÔI NÉT VỀ MÌNH" VÀ THÊM ẢNH CHỮ NHẬT NGANG -->
+<!-- THAY ĐỔI TOÀN DIỆN BỐ CỤC MỤC GIỚI THIỆU: HÌNH ẢNH DẠNG KHỐI + BẢNG TAB TƯƠNG TÁC -->
 <section id="ve-minh">
   <div class="section-head reveal">
     <span class="eyebrow" style="position:static;">Đôi nét về mình</span>
-    <h2>Khám phá thế giới của mình</h2>
-    <p>Những mảnh ghép chi tiết về con người, sở thích, định hướng và mục tiêu mình hướng tới</p>
+    <h2>Khám phá không gian của Linh</h2>
+    <p>Chạm vào từng ô trong bảng tổng quan dưới đây để xem thông tin chi tiết và các thẻ liên quan</p>
   </div>
   
-  <div class="about-container">
-    <!-- Cột bên trái: Hình ảnh (Thêm ô ảnh chữ nhật ngang mới) -->
-    <div class="about-images reveal">
-      <img src="landscape-photo.jpg" alt="Ảnh phong cảnh / hoạt động cá nhân ngang" class="about-img-landscape" onerror="this.src='https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?q=80&w=600&auto=format&fit=crop';">
+  <div class="about-layout-wrapper">
+    <!-- CỘT 1: Khối ảnh lớn bố cục đứng ôm sát tương tự trang mẫu -->
+    <div class="about-image-side reveal">
+      <img src="linh.jpg" alt="Vũ Khánh Linh Portrait" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop';">
     </div>
 
-    <!-- Cột bên phải: Nội dung chi tiết bố cục rõ ràng -->
-    <div class="constellation">
-      <div class="const-item reveal">
-        <div class="const-dot">🌟</div>
-        <div class="const-card">
+    <!-- CỘT 2: Hệ thống bảng tương tác thông minh (Bấm chuyển thông tin và thẻ từ khóa) -->
+    <div class="about-interactive-side reveal">
+      <!-- Bảng tổng quan 4 ô -->
+      <div class="info-grid-board">
+        <div class="info-cell active-cell" onclick="switchAboutTab(0)">
+          <div class="cell-icon">🌟</div>
           <h3>Giới thiệu bản thân</h3>
-          <p>Mình là Vũ Khánh Linh, sinh viên Khoa Ngôn ngữ và Văn hóa Nhật Bản tại Trường Đại học Ngoại ngữ - ĐHQGHN. Mình luôn yêu thích sự sáng tạo và mong muốn ghi lại những dấu ấn trưởng thành của bản thân trên không gian số này.</p>
         </div>
-      </div>
-      
-      <div class="const-item reveal">
-        <div class="const-dot">🌸</div>
-        <div class="const-card">
+        <div class="info-cell" onclick="switchAboutTab(1)">
+          <div class="cell-icon">🌸</div>
           <h3>Sở thích cá nhân</h3>
-          <p>Ngoài giờ học, mình dành phần lớn thời gian để xem phim, nghe nhạc và tìm hiểu sâu sâu về văn hóa Nhật Bản. Những thói quen này không chỉ giúp mình thư giãn sau giờ học căng thẳng mà còn mang lại những góc nhìn cuộc sống phong phú và mới mẻ hơn mỗi ngày.</p>
+        </div>
+        <div class="info-cell" onclick="switchAboutTab(2)">
+          <div class="cell-icon">🎯</div>
+          <h3>Định hướng tương lai</h3>
+        </div>
+        <div class="info-cell" onclick="switchAboutTab(3)">
+          <div class="cell-icon">📘</div>
+          <h3>Mục tiêu Portfolio</h3>
         </div>
       </div>
 
-      <div class="const-item reveal">
-        <div class="const-dot">🎯</div>
-        <div class="const-card">
-          <h3>Mục tiêu học tập &amp; định hướng</h3>
-          <p>Mình mong muốn xây dựng nền tảng vững chắc về tiếng Nhật và văn hóa Nhật Bản, song song với việc chủ động trau dồi kỹ năng số cần thiết trong thời đại chuyển đổi số, để có thể vận dụng linh hoạt cả hai trong công việc tương lai.</p>
+      <!-- Khung hiển thị thông tin và thẻ từ khóa động -->
+      <div class="info-details-display">
+        
+        <!-- Nội dung ô 1 -->
+        <div class="details-content-pane active-pane" id="pane-0">
+          <h4>Xin chào, mình là Khánh Linh!</h4>
+          <p>Hiện tại mình đang theo học tại Khoa Ngôn ngữ và Văn hóa Nhật Bản, Trường Đại học Ngoại ngữ - Đại học Quốc gia Hà Nội. Mình luôn hứng thú với việc khám phá các nền tảng kỹ năng mới và kết nối thế giới ngôn ngữ với công nghệ hiện đại.</p>
+          <div class="related-tags-zone">
+            <span class="keyword-tag">#VũKhánhLinh</span>
+            <span class="keyword-tag">#ULIS_VNU</span>
+            <span class="keyword-tag">#SinhViênNămNhất</span>
+            <span class="keyword-tag">#NgônNgữNhật</span>
+          </div>
         </div>
-      </div>
 
-      <div class="const-item reveal">
-        <div class="const-dot">📘</div>
-        <div class="const-card">
-          <h3>Mục tiêu của Portfolio</h3>
-          <p>Trang này được xây dựng để ghi lại một cách khoa học những kỹ năng số mình tích lũy qua học phần Nhập môn Công nghệ số và Ứng dụng Trí tuệ nhân tạo, đồng thời là nơi lưu trữ sản phẩm cá nhân dễ truy cập và chia sẻ.</p>
+        <!-- Nội dung ô 2 -->
+        <div class="details-content-pane" id="pane-1">
+          <h4>Những điều làm cuộc sống mình rực rỡ</h4>
+          <p>Ngoài không gian giảng đường, mình thích tìm cảm hứng thông qua việc xem phim truyền hình, nghe các giai điệu nhẹ nhàng và chủ động tìm hiểu các nét đẹp văn hóa độc đáo của xứ sở hoa anh đào. Điều này hỗ trợ tư duy ngôn ngữ của mình cực tốt.</p>
+          <div class="related-tags-zone">
+            <span class="keyword-tag">#XemPhim</span>
+            <span class="keyword-tag">#NgheNhạc</span>
+            <span class="keyword-tag">#VănHóaNhậtBản</span>
+            <span class="keyword-tag">#JPop_Anime</span>
+          </div>
         </div>
+
+        <!-- Nội dung ô 3 -->
+        <div class="details-content-pane" id="pane-2">
+          <h4>Mục tiêu học tập & Định hướng phát triển</h4>
+          <p>Mình mong muốn xây dựng một nền tảng kiến thức chuyên sâu vững chắc về Nhật Bản học. Đồng thời, mình chủ động kết hợp trau dồi các kỹ năng công nghệ số và ứng dụng AI cốt lõi để nâng cao hiệu suất làm việc toàn diện trong kỷ nguyên mới.</p>
+          <div class="related-tags-zone">
+            <span class="keyword-tag">#ChuyểnĐổiSố</span>
+            <span class="keyword-tag">#NăngLựcCạnhTranh</span>
+            <span class="keyword-tag">#KỹNăngAI</span>
+            <span class="keyword-tag">#HọcTậpChủĐộng</span>
+          </div>
+        </div>
+
+        <!-- Nội dung ô 4 -->
+        <div class="details-content-pane" id="pane-3">
+          <h4>Ý nghĩa cốt lõi của không gian này</h4>
+          <p>Trang Portfolio này được thiết kế như một cuốn nhật ký số hóa lưu trữ toàn bộ các sản phẩm thực hành thực tế của học phần VNU1001. Đây là minh chứng rõ ràng cho tiến trình phát triển và hoàn thiện kỹ năng số của bản thân mình.</p>
+          <div class="related-tags-zone">
+            <span class="keyword-tag">#LưuTrữSố</span>
+            <span class="keyword-tag">#ỨngDụngTríTuệNhânTạo</span>
+            <span class="keyword-tag">#MinhChứngHọcTập</span>
+            <span class="keyword-tag">#VNU1001</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
-<!-- THÊM TỔNG KẾT KINH NGHIỆM VÀ ĐƯỜNG DẪN DIRECT DRIVE VÀO CUỐI PHẦN BÀI TẬP -->
+<!-- PHẦN BÀI TẬP & HỘP TỔNG KẾT KINH NGHIỆM ĐƯỜNG DẪN DRIVE TRỰC TIẾP -->
 <section id="bai-tap">
   <div class="section-head reveal">
     <span class="eyebrow" style="position:static;">Bài tập số</span>
     <h2>Sáu vì sao trong hành trình học kỳ này</h2>
     <p>Chạm vào từng bài để xem tóm tắt quá trình thực hiện kèm hình ảnh minh họa chi tiết</p>
   </div>
-  
   <div class="work-grid" id="workGrid"></div>
 
-  <!-- Phần bổ sung: Tổng kết kinh nghiệm 6 bài tập & Nút Drive trực tiếp -->
+  <!-- Khối tổng kết kinh nghiệm 6 bài tập và link Drive trực tiếp -->
   <div class="exercises-summary-box reveal">
-    <h3>📊 Tổng kết kinh nghiệm qua 6 bài tập</h3>
+    <h3>📊 Tổng kết kinh nghiệm sau 6 bài tập</h3>
     <p>
-      Trải qua chuỗi 6 bài tập thực hành kéo dài từ việc làm quen phần cứng, khai thác tài nguyên học thuật, cho đến ứng dụng AI tạo sinh và đảm bảo an toàn số, mình đã tích lũy được nền tảng tư duy công nghệ vô cùng quý giá. Mỗi bài tập là một nấc thang giúp mình phá bỏ rào cản công nghệ, học cách viết câu lệnh (prompt) tối ưu và hiểu sâu sắc hơn về trách nhiệm, liêm chính học thuật trong thời đại số.
+      Hành trình trải qua 6 bài tập thực hành lớn đã trang bị cho mình trọn vẹn từ tư duy hệ thống tệp tin cơ bản cho đến kỹ năng viết câu lệnh prompt điều hướng AI phức tạp và quy trình làm việc nhóm trực tuyến. Quan trọng hơn cả, mình đã thấu hiểu được giá trị của việc ứng dụng công nghệ một cách có trách nhiệm và tuân thủ nghiêm ngặt chuẩn mực liêm chính học thuật trong không gian số.
     </p>
     <div class="drive-cta-wrapper">
       <a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID" target="_blank" rel="noopener" class="btn-drive-direct">
-        📂 Truy cập Drive tổng hợp để xem thêm sản phẩm
+        📂 Truy cập trực tiếp Google Drive để xem file tổng hợp
       </a>
     </div>
   </div>
@@ -264,6 +441,21 @@
 </footer>
 
 <script>
+  // ===== XỬ LÝ CHUYỂN ĐỔI Ô TRONG BẢNG GIỚI THIỆU ĐỘNG =====
+  function switchAboutTab(index) {
+    // Gỡ bỏ class active cũ của các ô trong bảng
+    const cells = document.querySelectorAll('.info-cell');
+    cells.forEach(cell => cell.classList.remove('active-cell'));
+    
+    // Gỡ bỏ class hiển thị nội dung cũ
+    const panes = document.querySelectorAll('.details-content-pane');
+    panes.forEach(pane => pane.classList.remove('active-pane'));
+    
+    // Kích hoạt ô mới và nội dung mới tương ứng
+    cells[index].classList.add('active-cell');
+    document.getElementById(`pane-${index}`).classList.add('active-pane');
+  }
+
   // ===== twinkling stars =====
   const starLayer = document.getElementById('star-layer');
   for(let i=0;i<40;i++){
@@ -318,22 +510,22 @@
   const exercises = [
     {t:"Máy tính và các thiết bị ngoại vi",
      goal:"Thao tác thành thạo với tệp tin, thư mục và các thiết bị ngoại vi cơ bản trên hệ điều hành Windows.",
-     link:"bai-tap-1.html"},
+     link:"baitap1.html"},
     {t:"Khai thác dữ liệu và thông tin",
      goal:"Rèn luyện khả năng tìm kiếm, chọn lọc và đánh giá độ tin cậy của nguồn thông tin học thuật.",
-     link:"bai-tap-2.html"},
+     link:"baitap2.html"},
     {t:"Tổng quan về trí tuệ nhân tạo",
      goal:"Làm quen với kỹ thuật viết prompt để khai thác hiệu quả các mô hình ngôn ngữ lớn trong học tập.",
-     link:"bai-tap-3.html"},
+     link:"baitap3.html"},
     {t:"Giao tiếp và hợp tác trong môi trường số",
      goal:"Sử dụng thành thạo các công cụ trực tuyến để phối hợp hiệu quả trong một dự án nhóm.",
-     link:"bai-tap-4.html"},
+     link:"baitap4.html"},
     {t:"Sáng tạo nội dung số",
      goal:"Ứng dụng các công cụ AI tạo sinh để hỗ trợ quá trình sáng tạo nội dung số.",
-     link:"bai-tap-5.html"},
+     link:"baitap5.html"},
     {t:"An toàn và liêm chính học thuật trong môi trường số",
      goal:"Nhận thức rõ ranh giới sử dụng AI có trách nhiệm, đảm bảo liêm chính học thuật.",
-     link:"bai-tap-6.html"},
+     link:"baitap6.html"},
   ];
   const grid = document.getElementById('workGrid');
   exercises.forEach((ex,i)=>{
