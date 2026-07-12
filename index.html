@@ -13,36 +13,97 @@
      CSS BỔ SUNG & CẬP NHẬT CHO BỐ CỤC GIỚI THIỆU GIỐNG WEB MẪU VÀ BẢNG TAB INTERACTIVE
      ========================================================================== */
   
-  /* Khung bao ngoài chia 2 phần lớn giống web mẫu */
+  /* Khung bao ngoài: giờ xếp dọc — ảnh banner ngang ở trên, bảng nội dung ở dưới */
   .about-layout-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
     max-width: 1200px;
     margin: 40px auto 0;
     padding: 0 20px;
-    align-items: stretch;
   }
 
-  /* Khung chứa ảnh lấy cảm hứng từ cấu trúc web mẫu */
+  /* Khung ảnh banner ngang, đặt phía trên các ô nội dung */
   .about-image-side {
     width: 100%;
-    min-height: 400px;
+    aspect-ratio: 21 / 7;
     border-radius: 24px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.18);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    isolation: isolate;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Viền phát sáng chạy quanh khung ảnh, đồng bộ tông tím-chàm của web */
+  .about-image-side::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: 26px;
+    background: linear-gradient(120deg, #6366f1, #a855f7, #ec4899, #6366f1);
+    background-size: 300% 300%;
+    animation: bannerGlow 8s ease infinite;
+    opacity: 0.55;
   }
   .about-image-side img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
+    animation: kenBurns 14s ease-in-out infinite alternate;
   }
-  .about-image-side:hover img {
-    transform: scale(1.03);
+  /* Chỉ phóng ảnh nhẹ trên thiết bị có chuột thật — tránh hiệu ứng phóng bị "kẹt" khi chạm/click trên di động */
+  @media (hover: hover) and (pointer: fine) {
+    .about-image-side:hover img {
+      transform: scale(1.06);
+    }
+  }
+
+  /* Lớp phủ gradient + nhãn tên phía dưới ảnh banner, đồng bộ tông màu chàm-tím */
+  .about-image-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 22px 26px 18px;
+    background: linear-gradient(to top, rgba(10, 10, 25, 0.85) 0%, rgba(10, 10, 25, 0.35) 55%, transparent 100%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    pointer-events: none;
+  }
+  .about-image-caption .caption-sparkle {
+    display: inline-block;
+    animation: sparkleSpin 3.5s ease-in-out infinite;
+  }
+  .about-image-caption .caption-sub {
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    margin-top: 2px;
+  }
+
+  @keyframes bannerGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes kenBurns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+  }
+  @keyframes sparkleSpin {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(20deg) scale(1.15); }
   }
 
   /* Hệ thống bảng tổng quan và nội dung tương tác (Interactive Board) */
@@ -50,12 +111,13 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
   }
   
   /* Bảng tổng quan gồm 4 ô */
   .info-grid-board {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
   }
   .info-cell {
@@ -66,8 +128,13 @@
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 12px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
   }
   .info-cell .cell-icon {
     font-size: 1.6rem;
@@ -93,6 +160,7 @@
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
     border-color: rgba(168, 85, 247, 0.4);
     box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
+    animation: cellPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .info-cell.active-cell h3 {
     color: #fff;
@@ -101,10 +169,28 @@
   .info-cell.active-cell .cell-icon {
     background: linear-gradient(135deg, #6366f1, #a855f7);
     transform: scale(1.05);
+    animation: iconBounce 0.5s ease;
   }
-  .info-cell:hover:not(.active-cell) {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-2px);
+  /* Hiệu ứng hover chỉ áp dụng cho chuột thật, tránh bị "kẹt" trạng thái phóng to sau khi chạm trên di động */
+  @media (hover: hover) and (pointer: fine) {
+    .info-cell:hover:not(.active-cell) {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+  }
+  .info-cell:active:not(.active-cell) {
+    background: rgba(255, 255, 255, 0.09);
+  }
+
+  @keyframes cellPop {
+    0% { transform: scale(0.96); }
+    60% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+  @keyframes iconBounce {
+    0% { transform: scale(0.6) rotate(-10deg); }
+    60% { transform: scale(1.15) rotate(6deg); }
+    100% { transform: scale(1.05) rotate(0deg); }
   }
 
   /* Khung hiển thị nội dung chi tiết phía dưới bảng */
@@ -212,17 +298,25 @@
     box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
   }
 
-  /* Responsive hạ xuống 1 cột trên màn hình điện thoại */
+  /* Responsive: ảnh banner thấp hơn và bảng ô rút về ít cột hơn trên màn hình nhỏ */
   @media (max-width: 968px) {
-    .about-layout-wrapper {
-      grid-template-columns: 1fr;
-      gap: 30px;
+    .info-grid-board {
+      grid-template-columns: repeat(2, 1fr);
     }
     .about-image-side {
-      min-height: 300px;
+      aspect-ratio: 16 / 9;
     }
+  }
+  @media (max-width: 560px) {
     .info-grid-board {
       grid-template-columns: 1fr;
+    }
+    .about-image-side {
+      aspect-ratio: 4 / 3;
+    }
+    .about-image-caption {
+      font-size: 1rem;
+      padding: 16px 18px 14px;
     }
   }
 </style>
@@ -294,28 +388,35 @@
   </div>
   
   <div class="about-layout-wrapper">
-    <!-- CỘT 1: Khối ảnh lớn bố cục đứng ôm sát tương tự trang mẫu -->
+    <!-- Ảnh banner ngang đặt phía trên các ô nội dung -->
     <div class="about-image-side reveal">
-      <img src="linh.jpg" alt="Vũ Khánh Linh Portrait" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop';">
+      <img src="linh.jpg" alt="Vũ Khánh Linh Portrait" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200&auto=format&fit=crop';">
+      <div class="about-image-caption">
+        <span class="caption-sparkle">🌙</span>
+        <span>
+          Vũ Khánh Linh
+          <span class="caption-sub">Sinh viên Khoa Ngôn ngữ &amp; Văn hóa Nhật Bản</span>
+        </span>
+      </div>
     </div>
 
-    <!-- CỘT 2: Hệ thống bảng tương tác thông minh (Bấm chuyển thông tin và thẻ từ khóa) -->
+    <!-- Hệ thống bảng tương tác thông minh (Bấm chuyển thông tin và thẻ từ khóa) -->
     <div class="about-interactive-side reveal">
       <!-- Bảng tổng quan 4 ô -->
       <div class="info-grid-board">
-        <div class="info-cell active-cell" onclick="switchAboutTab(0)">
+        <div class="info-cell active-cell reveal" onclick="switchAboutTab(0)">
           <div class="cell-icon">🌟</div>
           <h3>Giới thiệu bản thân</h3>
         </div>
-        <div class="info-cell" onclick="switchAboutTab(1)">
+        <div class="info-cell reveal" onclick="switchAboutTab(1)">
           <div class="cell-icon">🌸</div>
           <h3>Sở thích cá nhân</h3>
         </div>
-        <div class="info-cell" onclick="switchAboutTab(2)">
+        <div class="info-cell reveal" onclick="switchAboutTab(2)">
           <div class="cell-icon">🎯</div>
           <h3>Định hướng tương lai</h3>
         </div>
-        <div class="info-cell" onclick="switchAboutTab(3)">
+        <div class="info-cell reveal" onclick="switchAboutTab(3)">
           <div class="cell-icon">📘</div>
           <h3>Mục tiêu Portfolio</h3>
         </div>
