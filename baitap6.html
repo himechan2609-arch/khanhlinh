@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài 6 · An toàn và liêm chính học thuật trong môi trường số — Vũ Khánh Linh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blob-wrap"><div class="blob blob-1"></div></div>
+<div class="blob-wrap"><div class="blob blob-2"></div></div>
+<div class="blob-wrap"><div class="blob blob-3"></div></div>
+<div class="blob-wrap"><div class="blob blob-4"></div></div>
+<div id="star-layer"></div>
+
+<div class="subpage-header">
+  <a href="index.html#bai-tap" class="back-link">← Quay lại Portfolio</a><br>
+  <span class="subpage-tag">Bài tập 06 / 06</span>
+  <h1>An toàn và liêm chính học thuật trong môi trường số</h1>
+</div>
+
+<div class="subpage-block">
+  <h2>🎯 Mục tiêu</h2>
+  <p>Nhận thức rõ ranh giới sử dụng AI có trách nhiệm, đảm bảo liêm chính học thuật.</p>
+</div>
+
+<div class="subpage-block">
+  <h2>📝 Tóm tắt quá trình thực hiện</h2>
+  <p>Ở bài tập cuối cùng, mình dành thời gian tìm hiểu kỹ hơn về các quy định, hướng dẫn của Đại học Quốc gia Hà Nội liên quan đến việc sử dụng công cụ AI trong học tập và nghiên cứu.</p>
+  <p>Mình cũng tự rà soát lại toàn bộ các sản phẩm đã thực hiện trong học kỳ, đảm bảo mọi nội dung có sự hỗ trợ của AI đều được ghi chú, trích dẫn nguồn một cách minh bạch, rõ ràng.</p>
+  <p>Bài tập này giúp mình hiểu rằng sử dụng AI có trách nhiệm không phải là hạn chế bản thân, mà là biết rõ giới hạn nào cần tôn trọng để giữ được sự trung thực trong học thuật.</p>
+</div>
+
+<div class="image-gallery">
+  <div class="image-slot">
+    <img src="bai6-anh1.jpg" alt="Hình minh họa quá trình thực hiện bài 6 - ảnh 1"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai6-anh1.jpg</b><br>(ví dụ: ảnh chụp quy định sử dụng AI của trường)
+    </div>
+  </div>
+  <div class="image-slot">
+    <img src="bai6-anh2.jpg" alt="Hình minh họa quá trình thực hiện bài 6 - ảnh 2"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai6-anh2.jpg</b><br>(ví dụ: ảnh trích dẫn nguồn AI minh bạch)
+    </div>
+  </div>
+</div>
+
+<div class="subpage-nav">
+  <a href="bai-tap-5.html">← Bài 5: Sáng tạo nội dung số</a>
+  <a href="index.html#tong-ket">Xem Tổng kết chặng đường →</a>
+</div>
+
+<footer>Portfolio by Vũ Khánh Linh · © 2026</footer>
+
+<script>
+  const starLayer = document.getElementById('star-layer');
+  for(let i=0;i<40;i++){
+    const s = document.createElement('div');
+    s.className = 'twinkle';
+    const size = 2 + Math.random()*3;
+    s.style.width = size+'px'; s.style.height = size+'px';
+    s.style.left = (Math.random()*100)+'vw';
+    s.style.top = (Math.random()*300)+'vh';
+    s.style.animationDuration = (2+Math.random()*3)+'s';
+    s.style.animationDelay = (Math.random()*4)+'s';
+    starLayer.appendChild(s);
+  }
+</script>
+</body>
+</html>
