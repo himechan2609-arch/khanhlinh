@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài 1 · Máy tính và các thiết bị ngoại vi — Vũ Khánh Linh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blob-wrap"><div class="blob blob-1"></div></div>
+<div class="blob-wrap"><div class="blob blob-2"></div></div>
+<div class="blob-wrap"><div class="blob blob-3"></div></div>
+<div class="blob-wrap"><div class="blob blob-4"></div></div>
+<div id="star-layer"></div>
+
+<div class="subpage-header">
+  <a href="index.html#bai-tap" class="back-link">← Quay lại Portfolio</a><br>
+  <span class="subpage-tag">Bài tập 01 / 06</span>
+  <h1>Máy tính và các thiết bị ngoại vi</h1>
+</div>
+
+<div class="subpage-block">
+  <h2>🎯 Mục tiêu</h2>
+  <p>Thao tác thành thạo với tệp tin, thư mục và các thiết bị ngoại vi cơ bản trên hệ điều hành
+    Windows, hướng tới việc xây dựng một không gian làm việc số gọn gàng, có tổ chức.</p>
+</div>
+
+<div class="subpage-block">
+  <h2>📝 Tóm tắt quá trình thực hiện</h2>
+  <p>Trong bài tập đầu tiên, mình tập trung làm chủ các thao tác quản lý tệp tin và thư mục trên
+    hệ điều hành Windows — từ những việc tưởng chừng đơn giản như tạo mới, đổi tên, sao chép hay
+    di chuyển, cho đến các thao tác nâng cao hơn như khôi phục dữ liệu đã xóa từ Thùng rác.</p>
+  <p>Bên cạnh đó, mình cũng dành thời gian tìm hiểu và thực hành với một số thiết bị ngoại vi
+    phổ biến, hiểu rõ hơn vai trò của từng loại thiết bị trong công việc học tập hằng ngày.</p>
+  <p>Sau bài tập này, mình cảm thấy tự tin hơn hẳn khi làm việc với máy tính — không còn lúng
+    túng mỗi khi cần tìm lại một tệp tin bị thất lạc hay sắp xếp lại không gian lưu trữ cá nhân.</p>
+</div>
+
+<div class="image-gallery">
+  <div class="image-slot">
+    <img src="bai1-anh1.jpg" alt="Hình minh họa quá trình thực hiện bài 1 - ảnh 1"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai1-anh1.jpg</b><br>(ví dụ: ảnh chụp màn hình thư mục đã sắp xếp)
+    </div>
+  </div>
+  <div class="image-slot">
+    <img src="bai1-anh2.jpg" alt="Hình minh họa quá trình thực hiện bài 1 - ảnh 2"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai1-anh2.jpg</b><br>(ví dụ: ảnh thao tác khôi phục dữ liệu)
+    </div>
+  </div>
+</div>
+
+<div class="subpage-nav">
+  <a href="index.html#bai-tap">🏠 Về trang Bài tập</a>
+  <a href="bai-tap-2.html">Bài 2: Khai thác dữ liệu và thông tin →</a>
+</div>
+
+<footer>Portfolio by Vũ Khánh Linh · © 2026</footer>
+
+<script>
+  const starLayer = document.getElementById('star-layer');
+  for(let i=0;i<40;i++){
+    const s = document.createElement('div');
+    s.className = 'twinkle';
+    const size = 2 + Math.random()*3;
+    s.style.width = size+'px'; s.style.height = size+'px';
+    s.style.left = (Math.random()*100)+'vw';
+    s.style.top = (Math.random()*300)+'vh';
+    s.style.animationDuration = (2+Math.random()*3)+'s';
+    s.style.animationDelay = (Math.random()*4)+'s';
+    starLayer.appendChild(s);
+  }
+</script>
+</body>
+</html>
