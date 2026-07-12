@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài 4 · Giao tiếp và hợp tác trong môi trường số — Vũ Khánh Linh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blob-wrap"><div class="blob blob-1"></div></div>
+<div class="blob-wrap"><div class="blob blob-2"></div></div>
+<div class="blob-wrap"><div class="blob blob-3"></div></div>
+<div class="blob-wrap"><div class="blob blob-4"></div></div>
+<div id="star-layer"></div>
+
+<div class="subpage-header">
+  <a href="index.html#bai-tap" class="back-link">← Quay lại Portfolio</a><br>
+  <span class="subpage-tag">Bài tập 04 / 06</span>
+  <h1>Giao tiếp và hợp tác trong môi trường số</h1>
+</div>
+
+<div class="subpage-block">
+  <h2>🎯 Mục tiêu</h2>
+  <p>Sử dụng thành thạo các công cụ trực tuyến để phối hợp hiệu quả trong một dự án nhóm.</p>
+</div>
+
+<div class="subpage-block">
+  <h2>📝 Tóm tắt quá trình thực hiện</h2>
+  <p>Trong bài tập này, nhóm của mình đã cùng nhau xây dựng một quy trình làm việc trực tuyến khép kín, kết hợp nhiều công cụ như Google Docs, Google Sheets, Google Drive cùng các kênh liên lạc như Zalo và Google Meet.</p>
+  <p>Mình đảm nhận vai trò hỗ trợ quản lý tiến độ chung, cùng các thành viên phân chia đầu việc rõ ràng, đặt deadline cụ thể và thường xuyên cập nhật tình hình để tránh chồng chéo công việc.</p>
+  <p>Kinh nghiệm lớn nhất mình rút ra được là sự minh bạch trong giao tiếp và một không gian lưu trữ chung có tổ chức chính là chìa khóa giúp một dự án nhóm vận hành trơn tru.</p>
+</div>
+
+<div class="image-gallery">
+  <div class="image-slot">
+    <img src="bai4-anh1.jpg" alt="Hình minh họa quá trình thực hiện bài 4 - ảnh 1"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai4-anh1.jpg</b><br>(ví dụ: ảnh không gian làm việc nhóm trực tuyến)
+    </div>
+  </div>
+  <div class="image-slot">
+    <img src="bai4-anh2.jpg" alt="Hình minh họa quá trình thực hiện bài 4 - ảnh 2"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai4-anh2.jpg</b><br>(ví dụ: ảnh bảng phân công công việc)
+    </div>
+  </div>
+</div>
+
+<div class="subpage-nav">
+  <a href="bai-tap-3.html">← Bài 3: Tổng quan về trí tuệ nhân tạo</a>
+  <a href="bai-tap-5.html">Bài 5: Sáng tạo nội dung số →</a>
+</div>
+
+<footer>Portfolio by Vũ Khánh Linh · © 2026</footer>
+
+<script>
+  const starLayer = document.getElementById('star-layer');
+  for(let i=0;i<40;i++){
+    const s = document.createElement('div');
+    s.className = 'twinkle';
+    const size = 2 + Math.random()*3;
+    s.style.width = size+'px'; s.style.height = size+'px';
+    s.style.left = (Math.random()*100)+'vw';
+    s.style.top = (Math.random()*300)+'vh';
+    s.style.animationDuration = (2+Math.random()*3)+'s';
+    s.style.animationDelay = (Math.random()*4)+'s';
+    starLayer.appendChild(s);
+  }
+</script>
+</body>
+</html>
