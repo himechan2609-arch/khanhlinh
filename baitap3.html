@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài 3 · Tổng quan về trí tuệ nhân tạo — Vũ Khánh Linh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blob-wrap"><div class="blob blob-1"></div></div>
+<div class="blob-wrap"><div class="blob blob-2"></div></div>
+<div class="blob-wrap"><div class="blob blob-3"></div></div>
+<div class="blob-wrap"><div class="blob blob-4"></div></div>
+<div id="star-layer"></div>
+
+<div class="subpage-header">
+  <a href="index.html#bai-tap" class="back-link">← Quay lại Portfolio</a><br>
+  <span class="subpage-tag">Bài tập 03 / 06</span>
+  <h1>Tổng quan về trí tuệ nhân tạo</h1>
+</div>
+
+<div class="subpage-block">
+  <h2>🎯 Mục tiêu</h2>
+  <p>Làm quen với kỹ thuật viết prompt để khai thác hiệu quả các mô hình ngôn ngữ lớn trong học tập.</p>
+</div>
+
+<div class="subpage-block">
+  <h2>📝 Tóm tắt quá trình thực hiện</h2>
+  <p>Bài tập này là cơ hội để mình tìm hiểu sâu hơn về cách các mô hình ngôn ngữ lớn (LLM) hoạt động, cũng như cách khai thác chúng một cách hiệu quả thông qua kỹ nghệ câu lệnh (Prompt Engineering).</p>
+  <p>Mình đã thử xây dựng nhiều phiên bản prompt khác nhau cho cùng một tác vụ — từ câu lệnh đơn giản, sơ khai cho tới phiên bản có bổ sung ngữ cảnh, tiêu chí rõ ràng — rồi so sánh chất lượng phản hồi nhận được giữa các phiên bản.</p>
+  <p>Qua đó mình nhận ra rằng cách mình đặt câu hỏi ảnh hưởng rất lớn đến chất lượng câu trả lời của AI, và đây là một kỹ năng cần được rèn luyện thường xuyên.</p>
+</div>
+
+<div class="image-gallery">
+  <div class="image-slot">
+    <img src="bai3-anh1.jpg" alt="Hình minh họa quá trình thực hiện bài 3 - ảnh 1"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai3-anh1.jpg</b><br>(ví dụ: ảnh so sánh các phiên bản prompt)
+    </div>
+  </div>
+  <div class="image-slot">
+    <img src="bai3-anh2.jpg" alt="Hình minh họa quá trình thực hiện bài 3 - ảnh 2"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="image-placeholder" style="display:none;">
+      <span class="ic">🖼️</span>Thay bằng ảnh <b>bai3-anh2.jpg</b><br>(ví dụ: ảnh kết quả phản hồi từ AI)
+    </div>
+  </div>
+</div>
+
+<div class="subpage-nav">
+  <a href="bai-tap-2.html">← Bài 2: Khai thác dữ liệu và thông tin</a>
+  <a href="bai-tap-4.html">Bài 4: Giao tiếp và hợp tác trong môi trường số →</a>
+</div>
+
+<footer>Portfolio by Vũ Khánh Linh · © 2026</footer>
+
+<script>
+  const starLayer = document.getElementById('star-layer');
+  for(let i=0;i<40;i++){
+    const s = document.createElement('div');
+    s.className = 'twinkle';
+    const size = 2 + Math.random()*3;
+    s.style.width = size+'px'; s.style.height = size+'px';
+    s.style.left = (Math.random()*100)+'vw';
+    s.style.top = (Math.random()*300)+'vh';
+    s.style.animationDuration = (2+Math.random()*3)+'s';
+    s.style.animationDelay = (Math.random()*4)+'s';
+    starLayer.appendChild(s);
+  }
+</script>
+</body>
+</html>
