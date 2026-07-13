@@ -13,7 +13,7 @@
      CSS BỔ SUNG & CẬP NHẬT CHO BỐ CỤC GIỚI THIỆU GIỐNG WEB MẪU VÀ BẢNG TAB INTERACTIVE
      ========================================================================== */
   
-  /* Khung bao ngoài: xếp dọc — ảnh banner ngang ở trên, bảng nội dung ở dưới */
+  /* Khung bao ngoài: giờ xếp dọc — ảnh banner ngang ở trên, bảng nội dung ở dưới */
   .about-layout-wrapper {
     display: flex;
     flex-direction: column;
@@ -114,15 +114,18 @@
     width: 100%;
   }
   
-  /* Bảng tổng quan gồm 4 ô - ĐÃ ĐỔI MÀU KHỚP TONE WEB */
+  /* Bảng tổng quan gồm 4 ô */
   .info-grid-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
   }
+  
+  /* Đã cập nhật: Đồng bộ hoàn toàn với .work-card (nền trong suốt, mờ kính, viền mỏng) */
   .info-cell {
-    background: rgba(15, 23, 42, 0.55); /* Màu nền tối sâu đồng bộ với không gian web */
-    border: 1px solid rgba(99, 102, 241, 0.2); /* Viền màu chàm mờ */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 20px;
     border-radius: 16px;
     cursor: pointer;
@@ -138,7 +141,7 @@
   }
   .info-cell .cell-icon {
     font-size: 1.6rem;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.08);
     width: 45px;
     height: 45px;
     display: flex;
@@ -151,31 +154,31 @@
     font-size: 1.05rem;
     margin: 0;
     font-family: 'Nunito', sans-serif;
-    color: #94a3b8; /* Chữ màu xám bạc dịu nhẹ, không bị gắt */
+    color: #cbd5e1;
     font-weight: 600;
   }
   
-  /* Trạng thái ô đang được chọn - ĐÃ ĐỔI MÀU KHỚP TONE WEB */
+  /* Trạng thái ô đang được chọn */
   .info-cell.active-cell {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(168, 85, 247, 0.25)); /* Gradient Chàm - Tím neon mờ */
-    border-color: rgba(168, 85, 247, 0.6); /* Viền tím phát sáng rõ nét */
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
+    border-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
     animation: cellPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .info-cell.active-cell h3 {
-    color: #ffffff; /* Khi active chữ chuyển hẳn sang trắng sáng */
+    color: #fff;
     font-weight: 700;
   }
   .info-cell.active-cell .cell-icon {
-    background: linear-gradient(135deg, #6366f1, #a855f7); /* Icon có nền gradient đặc trưng */
+    background: linear-gradient(135deg, #6366f1, #a855f7);
     transform: scale(1.05);
     animation: iconBounce 0.5s ease;
   }
-  /* Hiệu ứng hover chỉ áp dụng cho chuột thật */
+  /* Hiệu ứng hover đồng bộ sắc xanh/tím */
   @media (hover: hover) and (pointer: fine) {
     .info-cell:hover:not(.active-cell) {
-      background: rgba(99, 102, 241, 0.12); /* Ánh lên sắc xanh chàm mờ khi hover */
-      border-color: rgba(99, 102, 241, 0.4);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(99, 102, 241, 0.3);
       transform: translateY(-2px);
     }
   }
@@ -194,19 +197,18 @@
     100% { transform: scale(1.05) rotate(0deg); }
   }
 
-  /* Khung hiển thị nội dung chi tiết phía dưới bảng */
+  /* Khung hiển thị nội dung chi tiết phía dưới bảng (Đồng bộ mờ kính cao cấp) */
   .info-details-display {
-    background: rgba(15, 23, 42, 0.6); /* Nền đồng bộ bóng mờ bóng đêm */
-    border: 1px solid rgba(99, 102, 241, 0.25); /* Viền màu chàm đồng điệu với khối bài tập */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 20px;
     padding: 30px;
     min-height: 180px;
-    backdrop-filter: blur(10px);
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: inset 0 4px 30px rgba(0, 0, 0, 0.2);
   }
   .details-content-pane {
     display: none;
@@ -235,9 +237,9 @@
     gap: 8px;
   }
   .keyword-tag {
-    background: rgba(99, 102, 241, 0.1); /* Màu nền thẻ mờ chàm */
-    border: 1px solid rgba(168, 85, 247, 0.25); /* Viền thẻ ánh tím nhẹ */
-    color: #c084fc; /* Màu chữ tím nhạt phát sáng dịu mắt */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #a78bfa;
     padding: 4px 12px;
     border-radius: 30px;
     font-size: 0.85rem;
@@ -245,10 +247,9 @@
     transition: all 0.2s ease;
   }
   .keyword-tag:hover {
-    background: rgba(168, 85, 247, 0.25);
-    border-color: rgba(168, 85, 247, 0.5);
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.3);
     color: #fff;
-    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.3);
   }
 
   @keyframes fadeInBlur {
@@ -256,7 +257,7 @@
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
   }
 
-  /* Khung tổng kết kinh nghiệm dưới lưới bài tập */
+  /* ĐÃ CẬP NHẬT: Khung tổng kết bài tập đồng bộ 100% với phong cách mờ kính của bài tập */
   .exercises-summary-box {
     max-width: 1200px;
     margin: 40px auto 0;
@@ -264,7 +265,8 @@
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(10px);
     border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Đã bổ sung khung viền mỏng tinh tế */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   }
   .exercises-summary-box h3 {
     font-family: 'Baloo 2', sans-serif;
