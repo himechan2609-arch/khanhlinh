@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="style.css">
 <style>
   /* ==========================================================================
-     CSS BỔ SUNG & CẬP NHẬT CHO BỐ CỤC GIỚI THIỆU GIỐNG WEB MẪU VÀ BẢNG TAB INTERACTIVE
+     CSS ĐỒNG BỘ THEO PHONG CÁCH THẺ TRẮNG TRỰC QUAN (HIGH-CONTRAST)
      ========================================================================== */
   
-  /* Khung bao ngoài: giờ xếp dọc — ảnh banner ngang ở trên, bảng nội dung ở dưới */
+  /* Khung bao ngoài phần Đôi nét về mình */
   .about-layout-wrapper {
     display: flex;
     flex-direction: column;
@@ -23,52 +23,29 @@
     padding: 0 20px;
   }
 
-  /* Khung ảnh banner ngang, đặt phía trên các ô nội dung */
+  /* Khung ảnh banner ngang phía trên */
   .about-image-side {
     width: 100%;
     aspect-ratio: 21 / 7;
-    border-radius: 24px;
+    border-radius: 28px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.18);
-    border: 1px solid rgba(168, 85, 247, 0.25);
+    box-shadow: 0 12px 32px rgba(147, 51, 234, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.7);
     isolation: isolate;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-  }
-  /* Viền phát sáng chạy quanh khung ảnh, đồng bộ tông tím-chàm của web */
-  .about-image-side::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    z-index: -1;
-    border-radius: 26px;
-    background: linear-gradient(120deg, #6366f1, #a855f7, #ec4899, #6366f1);
-    background-size: 300% 300%;
-    animation: bannerGlow 8s ease infinite;
-    opacity: 0.55;
   }
   .about-image-side img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s ease;
     animation: kenBurns 14s ease-in-out infinite alternate;
   }
-  /* Chỉ phóng ảnh nhẹ trên thiết bị có chuột thật — tránh hiệu ứng phóng bị "kẹt" khi chạm/click trên di động */
-  @media (hover: hover) and (pointer: fine) {
-    .about-image-side:hover img {
-      transform: scale(1.06);
-    }
-  }
-
-  /* Lớp phủ gradient + nhãn tên phía dưới ảnh banner, đồng bộ tông màu chàm-tím */
   .about-image-caption {
     position: absolute;
     left: 0; right: 0; bottom: 0;
     padding: 22px 26px 18px;
-    background: linear-gradient(to top, rgba(10, 10, 25, 0.85) 0%, rgba(10, 10, 25, 0.35) 55%, transparent 100%);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -76,12 +53,6 @@
     font-family: 'Baloo 2', sans-serif;
     font-size: 1.15rem;
     font-weight: 700;
-    letter-spacing: 0.2px;
-    pointer-events: none;
-  }
-  .about-image-caption .caption-sparkle {
-    display: inline-block;
-    animation: sparkleSpin 3.5s ease-in-out infinite;
   }
   .about-image-caption .caption-sub {
     display: block;
@@ -92,21 +63,12 @@
     margin-top: 2px;
   }
 
-  @keyframes bannerGlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
   @keyframes kenBurns {
     from { transform: scale(1); }
-    to { transform: scale(1.08); }
-  }
-  @keyframes sparkleSpin {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(20deg) scale(1.15); }
+    to { transform: scale(1.06); }
   }
 
-  /* Hệ thống bảng tổng quan và nội dung tương tác (Interactive Board) */
+  /* Hệ thống bảng tổng quan và nội dung tương tác */
   .about-interactive-side {
     display: flex;
     flex-direction: column;
@@ -121,91 +83,71 @@
     gap: 15px;
   }
   
-  /* Đã cập nhật: Đồng bộ hoàn toàn với .work-card (nền trong suốt, mờ kính, viền mỏng) */
+  /* ĐÃ SỬA: Đồng bộ 100% với nền trắng của thẻ bài tập mẫu */
   .info-cell {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #ffffff;
+    border: 1px solid rgba(147, 51, 234, 0.05);
     padding: 20px;
-    border-radius: 16px;
+    border-radius: 24px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+    box-shadow: 0 8px 24px rgba(147, 51, 234, 0.04);
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-    position: relative;
-    overflow: hidden;
   }
   .info-cell .cell-icon {
-    font-size: 1.6rem;
-    background: rgba(255, 255, 255, 0.08);
+    font-size: 1.4rem;
+    background: rgba(147, 51, 234, 0.06);
     width: 45px;
     height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 50%;
     transition: all 0.3s ease;
   }
   .info-cell h3 {
     font-size: 1.05rem;
     margin: 0;
     font-family: 'Nunito', sans-serif;
-    color: #cbd5e1;
-    font-weight: 600;
-  }
-  
-  /* Trạng thái ô đang được chọn */
-  .info-cell.active-cell {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
-    border-color: rgba(168, 85, 247, 0.4);
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
-    animation: cellPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  .info-cell.active-cell h3 {
-    color: #fff;
+    color: #3b3a56; /* Tông màu chữ tối rõ ràng */
     font-weight: 700;
   }
-  .info-cell.active-cell .cell-icon {
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    transform: scale(1.05);
-    animation: iconBounce 0.5s ease;
+  
+  /* Trạng thái ô đang được chọn - đồng bộ với nút gradient của ảnh mẫu */
+  .info-cell.active-cell {
+    background: #ffffff;
+    border-color: #a855f7;
+    box-shadow: 0 10px 25px rgba(147, 51, 234, 0.12);
   }
-  /* Hiệu ứng hover đồng bộ sắc xanh/tím */
+  .info-cell.active-cell h3 {
+    color: #1e1b4b;
+  }
+  .info-cell.active-cell .cell-icon {
+    background: linear-gradient(135deg, #7c3aed, #e11d48);
+    color: #fff;
+    transform: scale(1.05);
+  }
+
   @media (hover: hover) and (pointer: fine) {
     .info-cell:hover:not(.active-cell) {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(99, 102, 241, 0.3);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(147, 51, 234, 0.08);
     }
   }
-  .info-cell:active:not(.active-cell) {
-    background: rgba(255, 255, 255, 0.09);
-  }
 
-  @keyframes cellPop {
-    0% { transform: scale(0.96); }
-    60% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-  }
-  @keyframes iconBounce {
-    0% { transform: scale(0.6) rotate(-10deg); }
-    60% { transform: scale(1.15) rotate(6deg); }
-    100% { transform: scale(1.05) rotate(0deg); }
-  }
-
-  /* Khung hiển thị nội dung chi tiết phía dưới bảng (Đồng bộ mờ kính cao cấp) */
+  /* ĐÃ SỬA: Khung hiển thị nội dung chi tiết phía dưới dạng nền trắng rõ nét */
   .info-details-display {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 30px;
+    background: #ffffff;
+    border: 1px solid rgba(147, 51, 234, 0.05);
+    border-radius: 28px;
+    padding: 35px;
     min-height: 180px;
-    position: relative;
+    box-shadow: 0 12px 32px rgba(147, 51, 234, 0.05);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -220,67 +162,67 @@
   .details-content-pane h4 {
     font-family: 'Baloo 2', sans-serif;
     font-size: 1.4rem;
-    margin: 0 0 10px 0;
-    color: #fff;
+    margin: 0 0 12px 0;
+    color: #1e1b4b; /* Tiêu đề đậm rõ ràng */
   }
   .details-content-pane p {
-    color: #cbd5e1;
-    line-height: 1.6;
-    margin: 0 0 20px 0;
-    font-size: 0.98rem;
+    color: #4b5563; /* Chữ mô tả xám đậm chuẩn dễ đọc giống bài mẫu */
+    line-height: 1.7;
+    margin: 0 0 25px 0;
+    font-size: 1rem;
   }
 
-  /* Vùng chứa thẻ từ khóa liên quan */
+  /* Thẻ từ khóa liên quan */
   .related-tags-zone {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
   .keyword-tag {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: #a78bfa;
-    padding: 4px 12px;
+    background: rgba(147, 51, 234, 0.05);
+    border: 1px solid rgba(147, 51, 234, 0.1);
+    color: #6d28d9;
+    padding: 6px 14px;
     border-radius: 30px;
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.2s ease;
   }
   .keyword-tag:hover {
-    background: rgba(168, 85, 247, 0.15);
-    border-color: rgba(168, 85, 247, 0.3);
+    background: linear-gradient(135deg, #7c3aed, #e11d48);
     color: #fff;
+    border-color: transparent;
   }
 
   @keyframes fadeInBlur {
-    from { opacity: 0; transform: translateY(5px); filter: blur(4px); }
-    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ĐÃ CẬP NHẬT: Khung tổng kết bài tập đồng bộ 100% với phong cách mờ kính của bài tập */
+  /* ĐÃ SỬA: Khung tổng kết bài tập đồng bộ 100% nền trắng và bo tròn sâu như ảnh mẫu */
   .exercises-summary-box {
     max-width: 1200px;
     margin: 40px auto 0;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Đã bổ sung khung viền mỏng tinh tế */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    padding: 35px;
+    background: #ffffff; 
+    border-radius: 28px; 
+    border: 1px solid rgba(147, 51, 234, 0.05); 
+    box-shadow: 0 12px 32px rgba(147, 51, 234, 0.06); 
   }
   .exercises-summary-box h3 {
     font-family: 'Baloo 2', sans-serif;
     font-size: 1.5rem;
-    color: #fff;
-    margin: 0 0 12px 0;
+    color: #1e1b4b;
+    margin: 0 0 14px 0;
     display: flex;
     align-items: center;
     gap: 10px;
   }
   .exercises-summary-box p {
-    color: #cbd5e1;
-    line-height: 1.7;
-    margin: 0 0 25px 0;
+    color: #4b5563; 
+    line-height: 1.75;
+    margin: 0 0 28px 0;
+    font-size: 1rem;
   }
   .drive-cta-wrapper {
     text-align: center;
@@ -289,21 +231,21 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background: linear-gradient(135deg, #6366f1, #a855f7);
+    background: linear-gradient(135deg, #7c3aed, #e11d48); /* Nút màu gradient tím vàng đỏ cam bắt mắt giống ảnh mẫu */
     color: #fff;
-    padding: 14px 32px;
+    padding: 14px 36px;
     border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
     transition: all 0.3s ease;
   }
   .btn-drive-direct:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(168, 85, 247, 0.5);
+    box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4);
   }
 
-  /* Responsive: ảnh banner thấp hơn và bảng ô rút về ít cột hơn trên màn hình nhỏ */
+  /* Responsive mượt mà */
   @media (max-width: 968px) {
     .info-grid-board {
       grid-template-columns: repeat(2, 1fr);
@@ -361,7 +303,7 @@
     <span class="eyebrow reveal">✨ Portfolio cá nhân</span>
     <div class="moon-avatar reveal">
       <div class="moon-inner">
-        <img src="avt.jpg" alt="Ảnh cá nhân của Vũ Khánh Linh"
+        <img src="avatar.jpg" alt="Ảnh cá nhân của Vũ Khánh Linh"
              onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'avatar-fallback\'>KL</span>';">
       </div>
       <div class="star-badge">🌙</div>
@@ -536,17 +478,13 @@
 </footer>
 
 <script>
-  // ===== XỬ LÝ CHUYỂN ĐỔI Ô TRONG BẢNG GIỚI THIỆU ĐỘNG =====
   function switchAboutTab(index) {
-    // Gỡ bỏ class active cũ của các ô trong bảng
     const cells = document.querySelectorAll('.info-cell');
     cells.forEach(cell => cell.classList.remove('active-cell'));
     
-    // Gỡ bỏ class hiển thị nội dung cũ
     const panes = document.querySelectorAll('.details-content-pane');
     panes.forEach(pane => pane.classList.remove('active-pane'));
     
-    // Kích hoạt ô mới và nội dung mới tương ứng
     cells[index].classList.add('active-cell');
     document.getElementById(`pane-${index}`).classList.add('active-pane');
   }
@@ -601,26 +539,13 @@
     el.addEventListener('mouseleave', () => { el.style.transform = ''; });
   }
 
-  // ===== bài tập card grid, each links to its own sub-page =====
   const exercises = [
-    {t:"Máy tính và các thiết bị ngoại vi",
-     goal:"Thao tác thành thạo với tệp tin, thư mục và các thiết bị ngoại vi cơ bản trên hệ điều hành Windows.",
-     link:"baitap1.html"},
-    {t:"Khai thác dữ liệu và thông tin",
-     goal:"Rèn luyện khả năng tìm kiếm, chọn lọc và đánh giá độ tin cậy của nguồn thông tin học thuật.",
-     link:"baitap2.html"},
-    {t:"Tổng quan về trí tuệ nhân tạo",
-     goal:"Làm quen với kỹ thuật viết prompt để khai thác hiệu quả các mô hình ngôn ngữ lớn trong học tập.",
-     link:"baitap3.html"},
-    {t:"Giao tiếp và hợp tác trong môi trường số",
-     goal:"Sử dụng thành thạo các công cụ trực tuyến để phối hợp hiệu quả trong một dự án nhóm.",
-     link:"baitap4.html"},
-    {t:"Sáng tạo nội dung số",
-     goal:"Ứng dụng các công cụ AI tạo sinh để hỗ trợ quá trình sáng tạo nội dung số.",
-     link:"baitap5.html"},
-    {t:"An toàn và liêm chính học thuật trong môi trường số",
-     goal:"Nhận thức rõ ranh giới sử dụng AI có trách nhiệm, đảm bảo liêm chính học thuật.",
-     link:"baitap6.html"},
+    {t:"Máy tính và các thiết bị ngoại vi", goal:"Thao tác thành thạo với tệp tin, thư mục và các thiết bị ngoại vi cơ bản trên hệ điều hành Windows.", link:"baitap1.html"},
+    {t:"Khai thác dữ liệu và thông tin", goal:"Rèn luyện khả năng tìm kiếm, chọn lọc và đánh giá độ tin cậy của nguồn thông tin học thuật.", link:"baitap2.html"},
+    {t:"Tổng quan về trí tuệ nhân tạo", goal:"Làm quen với kỹ thuật viết prompt để khai thác hiệu quả các mô hình ngôn ngữ lớn trong học tập.", link:"baitap3.html"},
+    {t:"Giao tiếp và hợp tác trong môi trường số", goal:"Sử dụng thành thạo các công cụ trực tuyến để phối hợp hiệu quả trong một dự án nhóm.", link:"baitap4.html"},
+    {t:"Sáng tạo nội dung số", goal:"Ứng dụng các công cụ AI tạo sinh để hỗ trợ quá trình sáng tạo nội dung số.", link:"baitap5.html"},
+    {t:"An toàn và liêm chính học thuật trong môi trường số", goal:"Nhận thức rõ ranh giới sử dụng AI có trách nhiệm, đảm bảo liêm chính học thuật.", link:"baitap6.html"},
   ];
   const grid = document.getElementById('workGrid');
   exercises.forEach((ex,i)=>{
@@ -636,7 +561,6 @@
     addTilt(card, 4);
   });
 
-  // ===== reveal on scroll =====
   const reveals = document.querySelectorAll('.reveal');
   reveals.forEach((el, i) => { el.style.transitionDelay = (i % 6) * 0.07 + 's'; });
   const io = new IntersectionObserver((entries)=>{
@@ -646,7 +570,6 @@
   }, { threshold: 0.12 });
   reveals.forEach(el=>io.observe(el));
 
-  // ===== smooth scroll + active nav =====
   const navLinks = document.querySelectorAll('.nav-link');
   document.querySelectorAll('a[href^="#"]').forEach(link=>{
     link.addEventListener('click', (e)=>{
